@@ -105,6 +105,9 @@ class MainActivity : AppCompatActivity() {
 
         imagenesArray.shuffle()
 
+        tv_j1 = findViewById(R.id.tv_j1)
+        tv_j2 = findViewById(R.id.tv_j2)
+
         tv_j2.setTextColor(Color.GRAY)
         tv_j1.setTextColor(Color.WHITE)
 
