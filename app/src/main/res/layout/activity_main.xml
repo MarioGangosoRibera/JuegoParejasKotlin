@@ -15,7 +15,6 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="seleccionar"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/fondo" />
     </FrameLayout>
@@ -55,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:onClick="musicaFondo"
         android:padding="16dp"
