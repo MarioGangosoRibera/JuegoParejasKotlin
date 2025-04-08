@@ -14,11 +14,10 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-    //<editor-fold desc="IMAGENES GUI">
+
+    //Imagenes
     lateinit var iv_11:ImageView
     lateinit var iv_12:ImageView
     lateinit var iv_13:ImageView
@@ -33,9 +32,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var iv_32:ImageView
     lateinit var iv_33:ImageView
     lateinit var iv_34:ImageView
-    //</editor_fold>
 
-    //<editor-fold desc="OTROS GUI">
+    //Otros GUI
     lateinit var tv_j1:TextView
     lateinit var tv_j2:TextView
 
@@ -46,9 +44,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var imagen1: ImageView
     lateinit var imagen2: ImageView
 
-    //</editor_fold>
 
-    //<editor-fold desc="VARIABLES GUI">
+    //VARIABLES GUI
     var imagenesArray = arrayOf(11,12,13,14,15,16,21,22,23,24,25,26)
     var mario = 0
     var luigi = 0
@@ -132,9 +129,9 @@ class MainActivity : AppCompatActivity() {
                 mpFondo.start()
             }
         } else {
-            mpFondo = MediaPlayer.create(this, resID)
-            mpFondo.setOnCompletionListener(MediaPlayer.OnCompletionListener {
-                mediaPlayer -> mediaPlayer.stop()
+            mp = MediaPlayer.create(this, resID)
+            mp.setOnCompletionListener(MediaPlayer.OnCompletionListener { mediaPlayer ->
+                mediaPlayer.stop()
                 mediaPlayer.release()
             })
             if(!mp.isPlaying){
@@ -144,13 +141,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun musicaFondo(v:View){
-        if(escuchar==true){
+        if(escuchar){
             mpFondo.pause()
             ib_sonido.setImageResource(R.drawable.ic_volume_off)
             ib_sonido.setColorFilter(Color.GRAY)
         } else {
             mpFondo.start()
-            ib_sonido.setImageResource(R.drawable.ic_volumen_on)
+            ib_sonido.setImageResource(R.drawable.ic_volume_on)
             ib_sonido.setColorFilter(Color.GREEN)
         }
         escuchar = !escuchar
@@ -158,7 +155,6 @@ class MainActivity : AppCompatActivity() {
 
     fun seleccionar(imagen: View){
         sonido("touch")
-
         verificar(imagen)
     }
 
@@ -190,6 +186,7 @@ class MainActivity : AppCompatActivity() {
         } else if (imagenesArray[tag] == 26) {
             imagen.setImageResource(wario)
         }
+
         //Guardar temporalmente imagen seleccionada
         if (numeroImagen == 1) {
             imagen1 = iv
@@ -203,7 +200,6 @@ class MainActivity : AppCompatActivity() {
             val h = Handler(Looper.getMainLooper())
             h.postDelayed({sonImagenesIguales()}, 1000)
         }
-
     }
 
     private fun sonImagenesIguales() {
@@ -248,7 +244,6 @@ class MainActivity : AppCompatActivity() {
         iv_34.isEnabled = !iv_34.tag.toString().isEmpty()
 
         verificarFinJuego()
-
     }
 
     private fun verificarFinJuego() {
@@ -268,24 +263,24 @@ class MainActivity : AppCompatActivity() {
             ){
                 mp.stop()
                 mp.release()
-            sonido("win")
-            val  builder = AlertDialog.Builder(this)
-            builder
-                .setTitle("FIN DEL JUEGO")
-                .setMessage("PUNTAJE \nJ1"+puntosj1+"\nJ2"+puntosj2)
-                .setCancelable(false)
-                .setPositiveButton("Jugar de nuevo",
-                    DialogInterface.OnClickListener{dialogInterface, i ->
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    })
-                .setNegativeButton("Salir",
-                    DialogInterface.OnClickListener{dialogInterface, i ->
-                        finish()
-                    })
-            val ad = builder.create()
-            ad.show()
+                sonido("win")
+                val  builder = AlertDialog.Builder(this)
+                builder
+                    .setTitle("FIN DEL JUEGO")
+                    .setMessage("PUNTAJE \nJ1 "+puntosj1+"\nJ2 "+puntosj2)
+                    .setCancelable(false)
+                    .setPositiveButton("Jugar de nuevo",
+                        DialogInterface.OnClickListener{dialogInterface, i ->
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        })
+                        .setNegativeButton("Salir",
+                            DialogInterface.OnClickListener{dialogInterface, i ->
+                                finish()
+                            })
+                    val ad = builder.create()
+                    ad.show()
         }
     }
 
@@ -308,7 +303,5 @@ class MainActivity : AppCompatActivity() {
         iv_32.isEnabled = false
         iv_33.isEnabled = false
         iv_34.isEnabled = false
-
-
     }
 }

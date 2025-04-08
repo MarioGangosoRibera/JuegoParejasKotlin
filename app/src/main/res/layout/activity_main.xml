@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_j2"
         app:layout_constraintStart_toEndOf="@+id/tv_j1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_volumen_on" />
+        app:srcCompat="@drawable/ic_volume_on" />
 
     <include
         layout="@layout/fichas"
