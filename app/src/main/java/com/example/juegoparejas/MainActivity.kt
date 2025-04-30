@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         if(sonidoName=="background"){
             mpFondo = MediaPlayer.create(this, resID)
             mpFondo.isLooping = loop
-            mpFondo.setVolume(0.04F, 0.04F)
+            mpFondo.setVolume(1.0F, 1.0F)
             if(!mpFondo.isPlaying){
                 mpFondo.start()
             }
